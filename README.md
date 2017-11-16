@@ -1,7 +1,13 @@
 
 
 ```bash
-$ export FLASK_APP=main.py
-$ export FLASK_DEBUG=1
-$ flask run
+python3 -m venv venv
+. venv/bin/activate
+
+pip instal Flask-SQLAlchemy
+pip install pymysql
+```
+
+```bash
+python3 run.py
 ```
