@@ -1,0 +1,16 @@
+<div class="col-sm-3 offset-sm-1 blog-sidebar">
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ol class="list-unstyled">
+        {% for archive in archives %}
+          <li><a href="#">{{ archive.date }} ({{ archive.nb }})</a></li>
+        {% endfor %}
+    </ol>
+  </div>
+  <div class="sidebar-module">
+    <h4>Elsewhere</h4>
+    <ol class="list-unstyled">
+      <li><a href="https://github.com/bourdeau">My GitHub</a></li>
+    </ol>
+  </div>
+</div><!-- /.blog-sidebar -->

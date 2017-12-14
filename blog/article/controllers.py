@@ -7,12 +7,18 @@ article = Blueprint('article', __name__)
 @article.route("/", methods = ['GET'])
 def home():
     articles = Article.query.all()
-    return render_template('home.html', articles=articles)
+    return render_template('article/home.html', articles=articles)
 
-@article.route("/<id>", methods = ['GET'])
-def single(id):
-    article = Article.query.filter_by(id=id).first()
+@article.route("/<slug>", methods = ['GET'])
+def single(slug):
+    article = Article.query.filter_by(slug=slug).first()
     if not article:
         return render_template('404.html'), 404
 
-    return render_template('single.html', article=article)
+    return render_template('article/single.html', article=article)
+
+
+@article.context_processor
+def archives():
+    archives = Article.get_archives()
+    return dict(archives=archives)

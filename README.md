@@ -17,6 +17,7 @@ python3 run.py
 
 Migrations:
 ```bash
+. venv/bin/activate
 export FLASK_APP=blog/__init__.py;
 flask db migrate
 flask db upgrade
