@@ -11,6 +11,7 @@ blog.config.from_object('config')
 # Define the database object which is imported
 # by modules and controllers
 db = SQLAlchemy(blog)
+migrate = Migrate(blog, db)
 
 # HTTP error handling
 @blog.errorhandler(404)

@@ -14,3 +14,10 @@ Run
 . venv/bin/activate
 python3 run.py
 ```
+
+Migrations:
+```bash
+export FLASK_APP=blog/__init__.py;
+flask db migrate
+flask db upgrade
+```
