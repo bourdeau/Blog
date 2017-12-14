@@ -15,8 +15,12 @@ migrate = Migrate(blog, db)
 
 # HTTP error handling
 @blog.errorhandler(404)
-def not_found(error):
-    return render_template('404.html'), 404
+def not_found_404(error):
+    return render_template('common/404.html'), 404
+
+@blog.errorhandler(500)
+def not_found_500(error):
+    return render_template('common/500.html'), 500
 
 # Import a module / component using its blueprint handler variable
 from blog.article.controllers import article
@@ -25,7 +29,3 @@ from blog.article.controllers import article
 blog.register_blueprint(article)
 # blog.register_blueprint(xyz_module)
 # ..
-
-# Build the database:
-# This will create the database file using SQLAlchemy
-# db.create_all()
