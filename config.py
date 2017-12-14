@@ -8,7 +8,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 # Define the database - we are working with
 # SQLite for this example
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:isnogood83@localhost/blog'
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:h1n1h5n1SB@localhost/blog'
 DATABASE_CONNECT_OPTIONS = {}
 
 # Application threads. A common general assumption is
@@ -23,7 +23,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Use a secure, unique and absolutely secret key for
 # signing the data.
-CSRF_SESSION_KEY = "secret"
+CSRF_SESSION_KEY = "mLLJXWoXzs9ZkLxQVN7tDBWv2WwNKlZyRXhs3lKYhpQ="
 
 # Secret key for signing cookies
-SECRET_KEY = "secret"
+SECRET_KEY = "XZ0F7nAf1o9dfLaJDDvpIcBAThR/DNlIHTDowaSa+uM="
