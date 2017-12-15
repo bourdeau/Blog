@@ -2,9 +2,11 @@
 {% block body %}
 
 <div class="blog-post">
-    <h2 class="blog-post-title">{{ article.title}}</h2>
-    <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-    {{ article.content}}
+    {% for article in articles %}
+    <h2 class="blog-post-title"><a href="{{ url_for('front.single', slug=article.slug) }}">{{ article.title}}</a></h2>
+    <p class="blog-post-meta">{{ article.created_at.strftime('%d-%m-%Y') }} par <a href="#">Mark</a></p>
+      {{ article.content }}
+    {% endfor %}
 </div>
 <!-- /.blog-post -->
 

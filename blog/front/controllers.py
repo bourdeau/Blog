@@ -1,27 +1,26 @@
 from flask import Blueprint, render_template, abort
 from blog import db
-from blog.article.models import Article
-from datetime import datetime
-from datetime import timedelta
+from blog.front.models import Article
+from datetime import datetime, timedelta
 
-article = Blueprint('article', __name__)
+front = Blueprint('front', __name__, template_folder='templates')
 
-@article.route("/", methods = ['GET'])
+@front.route("/", methods = ['GET'])
 def home():
     articles = Article.query.all()
 
-    return render_template('article/home.html', articles=articles)
+    return render_template('home.html', articles=articles)
 
-@article.route("/<slug>", methods = ['GET'])
+@front.route("/<slug>", methods = ['GET'])
 def single(slug):
     article = Article.query.filter_by(slug=slug).first()
     if not article:
         abort(404)
 
-    return render_template('article/single.html', article=article)
+    return render_template('single.html', article=article)
 
 
-@article.route("/archives/<date>", methods = ['GET'])
+@front.route("/archives/<date>", methods = ['GET'])
 def archives(date):
     date_from = datetime.strptime(date, '%Y-%m')
     date_to = date_from + timedelta(days=30)
@@ -31,9 +30,9 @@ def archives(date):
 
     articles = Article.query.filter(Article.created_at.between(date_from_string, date_to_string))
 
-    return render_template('article/archives.html', articles=articles, date_from=date_from)
+    return render_template('archives.html', articles=articles, date_from=date_from)
 
-@article.context_processor
+@front.context_processor
 def archives():
     archives = Article.get_archives()
 

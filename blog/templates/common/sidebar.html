@@ -3,7 +3,7 @@
     <h4>Archives</h4>
     <ol class="list-unstyled">
         {% for archive in archives %}
-          <li><a href="{{ url_for('article.archives', date=archive.date_format) }}">{{ archive.date }} ({{ archive.nb }})</a></li>
+          <li><a href="{{ url_for('front.archives', date=archive.date_format) }}">{{ archive.date }} ({{ archive.nb }})</a></li>
         {% endfor %}
     </ol>
   </div>

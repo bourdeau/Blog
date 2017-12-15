@@ -27,3 +27,7 @@ CSRF_SESSION_KEY = "mLLJXWoXzs9ZkLxQVN7tDBWv2WwNKlZyRXhs3lKYhpQ="
 
 # Secret key for signing cookies
 SECRET_KEY = "XZ0F7nAf1o9dfLaJDDvpIcBAThR/DNlIHTDowaSa+uM="
+
+# Security (flask_security)
+SECURITY_PASSWORD_HASH = 'bcrypt'
+SECURITY_PASSWORD_SALT = 'kuahduiahzd'
