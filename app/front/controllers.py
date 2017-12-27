@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, abort
-from blog import db
-from blog.front.models import Article
+from app import db
+from app.front.models import Article
 from datetime import datetime, timedelta
 
 front = Blueprint('front', __name__, template_folder='templates')
