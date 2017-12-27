@@ -9,6 +9,7 @@ CSRF_ENABLED     = True
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 CSRF_SESSION_KEY = "mLLJXWoXzs9ZkLxQVN7tDBWv2WwNKlZyRXhs3lKYhpQ="
 SECRET_KEY = "XZ0F7nAf1o9dfLaJDDvpIcBAThR/DNlIHTDowaSa+uM="
+FIXTURES_DIRS = BASE_DIR + '/fixtures'
 
 # Security (flask_security: http://pythonhosted.org/Flask-Security/configuration.html)
 SECURITY_PASSWORD_HASH = 'bcrypt'

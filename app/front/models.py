@@ -9,9 +9,9 @@ class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), unique=False)
     slug = db.Column(db.String(80), unique=True)
-    content = db.Column(db.String(120), unique=False)
-    created_at = db.Column(db.DateTime, default=datetime.datetime.now())
-    updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
+    content = db.Column(db.UnicodeText(), unique=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now(), nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.now(), nullable=False)
 
     def __repr__(self):
         return '<Article %r>' % self.title
@@ -37,7 +37,6 @@ class Article(db.Model):
         else:
             nb_existing_titles += 1
             target.slug = new_slug + '-' + str(nb_existing_titles)
-
 
     @staticmethod
     def _before_update(mapper, connection, target):

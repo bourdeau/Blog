@@ -1,19 +1,18 @@
 from flask import Blueprint, render_template, abort
-from app import db
 from app.front.models import Article
 from datetime import datetime, timedelta
 
 front = Blueprint('front', __name__, template_folder='templates')
 
 
-@front.route("/", methods = ['GET'])
+@front.route("/", methods=['GET'])
 def home():
     articles = Article.query.all()
 
     return render_template('home.html', articles=articles)
 
 
-@front.route("/<slug>", methods = ['GET'])
+@front.route("/<slug>", methods=['GET'])
 def single(slug):
     article = Article.query.filter_by(slug=slug).first()
     if not article:
@@ -22,7 +21,7 @@ def single(slug):
     return render_template('single.html', article=article)
 
 
-@front.route("/archives/<date>", methods = ['GET'])
+@front.route("/archives/<date>", methods=['GET'])
 def archives(date):
     date_from = datetime.strptime(date, '%Y-%m')
     date_to = date_from + timedelta(days=30)

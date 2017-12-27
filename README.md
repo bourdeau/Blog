@@ -1,24 +1,25 @@
 
-
 Installation
 ```bash
 python3 -m venv venv
 . venv/bin/activate
 
-pip instal Flask-SQLAlchemy
-pip install pymysql
+pip3 install -r requirements.txt
+
+# Install db
+flask initdb
 ```
 
 Run
 ```bash
 . venv/bin/activate
-python3 run.py
+python run.py
 ```
 
 Migrations:
 ```bash
 . venv/bin/activate
-export FLASK_APP=blog/__init__.py;
+export FLASK_APP=app/__init__.py;
 flask db migrate
 flask db upgrade
 ```

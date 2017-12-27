@@ -4,7 +4,6 @@ from app import db
 from app.front.models import Article
 from app.admin.forms import ArticleForm
 
-
 admin = Blueprint('admin', __name__, url_prefix='/admin', template_folder='templates')
 
 
@@ -12,8 +11,6 @@ admin = Blueprint('admin', __name__, url_prefix='/admin', template_folder='templ
 @login_required
 def home():
     articles = Article.query.all()
-    if not articles:
-        abort(404)
 
     return render_template('index.html', articles=articles)
 
@@ -42,6 +39,7 @@ def article(id=None):
         return redirect('/admin')
 
     return render_template('article.html', title='New Article', form=form)
+
 
 @admin.route('/article/delete/<id>', methods=['GET'])
 @login_required

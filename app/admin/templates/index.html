@@ -15,7 +15,7 @@
             {% for article in articles %}
             <tr>
                 <th scope="row">{{ article.id }}</th>
-                <td>{{ article.title }}</td>
+                <td><a href="{{ url_for('front.single', slug=article.slug) }}">{{ article.title }}</a></td>
                 <td>{{ article.created_at }}</td>
                 <td><a href="{{ url_for('admin.article', id=article.id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                 <td><a href="{{ url_for('admin.delete_article', id=article.id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>

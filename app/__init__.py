@@ -21,7 +21,22 @@ user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(app, user_datastore)
 
 
-# HTTP error handling
+@app.cli.command('initdb')
+def initdb_command():
+    db.create_all()
+    """
+    Fixtures
+    """
+    user = User()
+    user.email = 'phbasic@gmail.com'
+    user.password = '123456789'
+    user.active = True
+    db.session.add(user)
+    db.session.commit()
+
+    print('Initialized the database.')
+
+
 @app.errorhandler(404)
 def not_found_404(error):
     return render_template('common/404.html'), 404
