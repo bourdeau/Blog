@@ -42,3 +42,18 @@ def article(id=None):
         return redirect('/admin')
 
     return render_template('article.html', title='New Article', form=form)
+
+@admin.route('/article/delete/<id>', methods=['GET'])
+@login_required
+def delete_article(id):
+    """
+    Delete an Article
+    """
+    article = Article.query.get(id)
+    if not article:
+        abort(404)
+
+    db.session.delete(article)
+    db.session.commit()
+
+    return redirect('/admin')
