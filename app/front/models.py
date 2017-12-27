@@ -28,9 +28,16 @@ class Article(db.Model):
     @staticmethod
     def _before_insert(mapper, connection, target):
         """
-        @todo improve with db fetch for existing article slug
+        Slug article before insert
         """
-        target.slug = slugify(target.title)
+        new_slug = slugify(target.title)
+        nb_existing_titles = target.query.filter_by(title=target.title).count()
+        if nb_existing_titles == 0:
+            target.slug = new_slug
+        else:
+            nb_existing_titles += 1
+            target.slug = new_slug + '-' + str(nb_existing_titles)
+
 
     @staticmethod
     def _before_update(mapper, connection, target):
