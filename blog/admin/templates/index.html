@@ -1,9 +1,26 @@
-{% extends "common/layout.html" %}
-{% block body %}
+{% extends "common/layout.html" %} {% block body %}
 
-<div class="blog-post">
-    ADMIN
+<div class="panel panel-default">
+    <div class="panel-heading">Panel heading</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Created At</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+            <tr>
+                <th scope="row">{{ article.id }}</th>
+                <td>{{ article.title }}</td>
+                <td>{{ article.created_at }}</td>
+                <td>Edit</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
-<!-- /.blog-post -->
-
 {% endblock %}

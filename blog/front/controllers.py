@@ -5,11 +5,13 @@ from datetime import datetime, timedelta
 
 front = Blueprint('front', __name__, template_folder='templates')
 
+
 @front.route("/", methods = ['GET'])
 def home():
     articles = Article.query.all()
 
     return render_template('home.html', articles=articles)
+
 
 @front.route("/<slug>", methods = ['GET'])
 def single(slug):
@@ -32,8 +34,9 @@ def archives(date):
 
     return render_template('archives.html', articles=articles, date_from=date_from)
 
+
 @front.context_processor
-def archives():
+def archives_get():
     archives = Article.get_archives()
 
     return dict(archives=archives)

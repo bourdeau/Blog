@@ -1,10 +1,11 @@
-from flask import Blueprint
+from flask import Blueprint, render_template, abort
 from blog import db
 from blog.front.models import Article
 from flask_security import login_required
 
 
 admin = Blueprint('admin', __name__, url_prefix='/admin', template_folder='templates')
+
 
 @admin.route("/", methods = ['GET'])
 @login_required
