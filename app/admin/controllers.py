@@ -4,6 +4,7 @@ from app import db
 from app.front.models import Article
 from app.admin.forms import ArticleForm
 
+
 admin = Blueprint('admin', __name__, url_prefix='/admin', template_folder='templates')
 
 
@@ -18,31 +19,26 @@ def home():
 
 
 @admin.route('/article', methods=['GET', 'POST'])
+@admin.route('/article/<id>', methods=['GET', 'POST'])
 @login_required
-def new_article():
-    form = ArticleForm()
+def article(id=None):
+    """
+    Create or Update an article
+    """
+
+    if id:
+        article = Article.query.get(id)
+        if not article:
+            abort(404)
+    else:
+        article = Article()
+
+    form = ArticleForm(obj=article)
     if form.validate_on_submit():
-        new_article = Article(form.title.data, form.content.data)
-        db.session.add(new_article)
+        form.populate_obj(article)
+
+        db.session.add(article)
         db.session.commit()
         return redirect('/admin')
 
     return render_template('article.html', title='New Article', form=form)
-
-
-@admin.route('/article/<id>', methods=['GET', 'POST'])
-@login_required
-def edit_article(id):
-    article = Article.query.get(id)
-    if not article:
-        abort(404)
-
-    form = ArticleForm()
-
-    if form.validate_on_submit():
-        new_article = Article(form.title.data, form.content.data)
-        db.session.add(new_article)
-        db.session.commit()
-        return redirect('/admin')
-
-    return render_template('article.html', title='Edit Article', form=form)
