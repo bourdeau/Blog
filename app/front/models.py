@@ -1,4 +1,7 @@
+import datetime
+from slugify import slugify
 from app import db
+
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -11,6 +14,9 @@ class Article(db.Model):
     def __init__(self, title, content):
         self.title = title
         self.content = content
+        self.slug = slugify(title)
+        self.created_at = datetime.datetime.now()
+        self.updated_at = datetime.datetime.now()
 
     def __repr__(self):
         return '<Article %r>' % self.title

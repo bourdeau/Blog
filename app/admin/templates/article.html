@@ -1,0 +1,16 @@
+{% extends "common/layout.html" %}
+{% block body %}
+    <h1>New Article</h1>
+    <form action="" method="post" name="article">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title(size=32) }}
+        </p>
+        <p>
+            {{ form.content.label }}<br>
+            {{ form.content(cols="35", rows="20") }}}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
