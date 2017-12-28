@@ -3,17 +3,21 @@
 
 <div class="blog-post">
     {% for article in articles %}
-    <h2 class="blog-post-title"><a href="{{ url_for('front.single', slug=article.slug) }}">{{ article.title}}</a></h2>
-    <p class="blog-post-meta">{{ article.created_at.strftime('%d-%m-%Y') }} par <a href="#">Mark</a></p>
-      {{ article.content }}
+        <h2 class="blog-post-title"><a href="{{ url_for('front.single', slug=article.slug) }}">{{ article.title}}</a></h2>
+        <p class="blog-post-meta">{{ article.created_at.strftime('%d-%m-%Y') }} par <a href="#">Mark</a></p>
+          {{ article.content[0:255] }} ...
     {% endfor %}
 </div>
 <!-- /.blog-post -->
 
 
 <nav class="blog-pagination">
-    <a class="btn btn-outline-primary" href="#">Older</a>
-    <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+    {% if pagination.more_records == True %}
+        <a class="btn btn-outline-primary" href="{{ url_for('front.home', page=pagination.next_page) }}">Older</a>
+    {% endif %}
+    {% if pagination.previous_page > 0 %}
+        <a class="btn btn-outline-primary" href="{{ url_for('front.home', page=pagination.previous_page) }}">Newer</a>
+    {% endif %}
 </nav>
 
 <!-- /.blog-main -->

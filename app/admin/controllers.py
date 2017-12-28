@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, abort, redirect
 from flask_security import login_required
-from app import db
+from app.application import db
 from app.front.models import Article
 from app.admin.forms import ArticleForm
 

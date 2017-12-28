@@ -1,6 +1,6 @@
 import datetime
 from slugify import slugify
-from app import db
+from app.application import db
 
 
 class Article(db.Model):

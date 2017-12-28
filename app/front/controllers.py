@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, request
 from app.front.models import Article
 from datetime import datetime, timedelta
 
@@ -7,9 +7,31 @@ front = Blueprint('front', __name__, template_folder='templates')
 
 @front.route("/", methods=['GET'])
 def home():
-    articles = Article.query.all()
+    nb_record = 3
 
-    return render_template('home.html', articles=articles)
+    page = request.args.get('page')
+
+    if not page:
+        page = 1
+    else:
+        page = int(page)
+
+    record_query = Article.query.paginate(page, nb_record, False)
+    articles = record_query.items
+    total = record_query.total
+
+    more_records = True
+
+    if (nb_record * page) >= total:
+        more_records = False
+
+    pagination = {
+        'next_page': page + 1,
+        'previous_page': page - 1,
+        'more_records': more_records
+    }
+
+    return render_template('home.html', articles=articles, pagination=pagination)
 
 
 @front.route("/<slug>", methods=['GET'])
