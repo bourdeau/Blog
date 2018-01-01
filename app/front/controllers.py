@@ -1,8 +1,7 @@
-from flask import Blueprint, render_template, abort, request
+from app.blueprints import front
+from flask import render_template, abort, request
 from app.front.models import Article
 from datetime import datetime, timedelta
-
-front = Blueprint('front', __name__, template_folder='templates')
 
 
 @front.route("/", methods=['GET'])

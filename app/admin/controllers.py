@@ -1,10 +1,9 @@
-from flask import Blueprint, render_template, abort, redirect
+from app.blueprints import admin
+from flask import render_template, abort, redirect
 from flask_security import login_required
 from app.application import db
 from app.front.models import Article
 from app.admin.forms import ArticleForm
-
-admin = Blueprint('admin', __name__, url_prefix='/admin', template_folder='templates')
 
 
 @admin.route("/", methods=['GET'])

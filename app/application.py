@@ -2,6 +2,8 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_security import Security, SQLAlchemyUserDatastore
+from importlib import import_module
+from app.blueprints import all_blueprints
 
 # Define the WSGI application object
 app = Flask(__name__)
@@ -46,10 +48,8 @@ def not_found_404(error):
 def not_found_500(error):
     return render_template('common/500.html'), 500
 
-# Import a module / component using its blueprint handler variable
-from app.front.controllers import front
-from app.admin.controllers import admin
 
-# Register blueprint(s)
-app.register_blueprint(front)
-app.register_blueprint(admin)
+# Registering modules
+for module in all_blueprints:
+    import_module(module.import_name)
+    app.register_blueprint(module)
