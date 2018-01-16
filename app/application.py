@@ -1,8 +1,10 @@
 from flask import Flask, render_template
-from flask_security import Security, SQLAlchemyUserDatastore
+from flask_security import SQLAlchemyUserDatastore
 from importlib import import_module
 from app.blueprints import all_blueprints
-from app.extensions import db, migrate
+from app.extensions import db, migrate, security
+# Must be after db because classes need db
+from app.admin.models import User, Role
 from app.commands import test
 
 
@@ -22,10 +24,10 @@ def register_extensions(app):
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # @todo I've a problem here for properly registering this :(
-    from app.admin.models import User, Role
+    # @todo there is no init_app in SQLAlchemyUserDatastore :'(
     user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-    security = Security(app, user_datastore)
+
+    security.init_app(app, user_datastore)
 
     return None
 
