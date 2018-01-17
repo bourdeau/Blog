@@ -10,7 +10,7 @@ pip3 install -r requirements.txt
 # Install db
 ```bash
 . venv/bin/activate
-export FLASK_APP=run.py;
+export FLASK_APP=run.py
 
 flask initdb
 ```
@@ -18,7 +18,9 @@ flask initdb
 Run
 ```bash
 . venv/bin/activate
-python run.py
+
+export FLASK_APP=run.py
+flask run
 ```
 
 Migrations:
