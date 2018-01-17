@@ -40,4 +40,4 @@ class Article(db.Model):
 
     @staticmethod
     def _before_update(mapper, connection, target):
-        target.updated_at = datetime.utcnow()
+        target.updated_at = datetime.datetime.now()
