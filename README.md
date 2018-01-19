@@ -1,32 +1,32 @@
+My Blog
+===============
 
-Installation
+## Installation
 ```bash
-python3 -m venv venv
-. venv/bin/activate
-
-pip3 install -r requirements.txt
+pipenv install
 ```
 
-# Install db
+## Install db
 ```bash
-. venv/bin/activate
+pipenv shell
 export FLASK_APP=run.py
 
-flask initdb
+flask init_db
 ```
 
-Run
+## Run
 ```bash
-. venv/bin/activate
-
+pipenv shell
 export FLASK_APP=run.py
+export FLASK_DEBUG=1
+
 flask run
 ```
 
-Migrations:
+## Migrations:
 ```bash
-. venv/bin/activate
-export FLASK_APP=run.py;
+pipenv shell
+export FLASK_APP=run.py
 
 flask db migrate
 flask db upgrade
