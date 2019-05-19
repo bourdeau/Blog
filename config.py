@@ -2,7 +2,7 @@ import os
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DEBUG = True
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:h1n1h5n1SB@localhost/blog'
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:h1n1h5n1SB@blog_db/blog_db'
 DATABASE_CONNECT_OPTIONS = {}
 THREADS_PER_PAGE = 2
 CSRF_ENABLED = True

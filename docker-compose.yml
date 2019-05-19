@@ -1,0 +1,27 @@
+version: "3.4"
+
+services:
+  blog:
+    build: .
+    container_name: blog
+    volumes:
+      - ./:/app
+    tty: true
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./.env
+    command: "gunicorn --bind 0.0.0.0:5000 --reload wsgi:app"
+
+  blog_db:
+    image: mariadb:latest
+    container_name: blog_db
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3333:3306"

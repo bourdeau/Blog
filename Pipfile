@@ -1,26 +1,21 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
-Flask = "==0.12.2"
-Flask-SQLAlchemy = "==2.3.2"
-SQLAlchemy-Utils = "==0.32.21"
-Flask-Migrate = "==2.1.1"
-Flask-Security = "==3.0.0"
+flask = "==1.0.2"
+flask-migrate = "==2.4.0"
+flask-cors = "==3.0.7"
+flask-security = "==3.0.0"
+flask-sqlalchemy = "==2.3.2"
+sqlalchemy-utils = "==0.32.21"
 python-slugify = "==1.2.4"
 PyMySQL = "==0.7.11"
 bcrypt = "==3.1.4"
 
-
 [dev-packages]
-
-
+pylint = "*"
 
 [requires]
-
-python_version = "3.6"
+python_version = "3.7"
