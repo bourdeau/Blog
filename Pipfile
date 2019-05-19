@@ -13,6 +13,7 @@ sqlalchemy-utils = "==0.32.21"
 python-slugify = "==1.2.4"
 PyMySQL = "==0.7.11"
 bcrypt = "==3.1.4"
+python-dotenv = "*"
 
 [dev-packages]
 pylint = "*"
