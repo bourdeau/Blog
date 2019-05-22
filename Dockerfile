@@ -1,5 +1,5 @@
 FROM python:3.7.1-alpine
-MAINTAINER Pierre-Henri Bourdeau <phbasic@gmail.com>
+LABEL maintainer="Pierre-Henri Bourdeau <phbasic@gmail.com>"
 
 RUN apk --no-cache add openssl-dev
 RUN apk --no-cache add --virtual \
@@ -15,11 +15,11 @@ COPY . /app
 WORKDIR /app
 
 RUN pip install --upgrade pip
-RUN pip install pipenv gunicorn
+RUN pip install pipenv
 RUN pipenv install --system --deploy --ignore-pipfile
 
-RUN pipenv run flask init_db
-RUN pipenv run flask db migrate
-RUN pipenv run flask db upgrade
+#RUN pipenv run flask init_db
+#RUN pipenv run flask db upgrade
+#RUN pipenv run flask db migrate
 
 EXPOSE 5000
