@@ -1,10 +1,10 @@
 .PHONY: help
 
 end = \033[0m
-bold = \033[1m
+green = \033[92m
 
 help:
-	@echo "${bold}init${end} -> First init docker's containers."
+	@echo "${green}start:${end} Up the project"
 
 
 start:
@@ -19,6 +19,12 @@ restart:
 
 shell-blog:
 	docker exec -it blog sh
+
+blog-init-db:
+	docker-compose exec --env FLASK_APP=wsgi.py blog flask load_fixture
+
+run-blog-dev:
+	docker-compose exec blog flask run --host 0.0.0.0 --port 5000
 
 reset:
 	docker kill $(docker ps -q)

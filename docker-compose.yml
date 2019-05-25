@@ -12,7 +12,7 @@ services:
     env_file:
       - ./.env
 
-  blog_db:
+  mysql:
     image: mariadb:latest
     container_name: blog_db
     env_file:

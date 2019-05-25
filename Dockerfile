@@ -16,13 +16,10 @@ WORKDIR /app
 
 RUN pip install --upgrade pip
 RUN pip install pipenv
+# Install dependencies globally, regenrate Pipfile.lock if outdated
 RUN pipenv install --system --deploy --ignore-pipfile
 
-# https://github.com/docker/compose/issues/1837
-# @todo doesn't work :(
-# RUN export FLASK_APP=wsgi.py
-# RUN pipenv run flask load_fixtures
 
 EXPOSE 5000
 
-CMD [ "gunicorn", "--bind", "0.0.0.0:5000", "--reload", "wsgi:app" ]
+#CMD [ "gunicorn", "--bind", "0.0.0.0:5000", "--reload", "wsgi:app" ]

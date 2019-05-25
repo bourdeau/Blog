@@ -10,6 +10,7 @@ from app.commands import load_fixtures
 
 def create_app():
     app = Flask(__name__)
+    # Loading configuration
     app.config.from_object('config')
 
     register_extensions(app)
