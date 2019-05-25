@@ -5,7 +5,7 @@ from app.blueprints import all_blueprints
 from app.extensions import db, migrate, security
 # Must be after db because classes need db
 from app.admin.models import User, Role
-from app.commands import init_db
+from app.commands import load_fixtures
 
 
 def create_app():
@@ -46,7 +46,7 @@ def register_blueprints(app):
 
 
 def register_commands(app):
-    app.cli.add_command(init_db)
+    app.cli.add_command(load_fixtures)
 
 
 def register_errorhandlers(app):

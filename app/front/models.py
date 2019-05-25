@@ -17,7 +17,7 @@ class Article(db.Model):
         return '<Article %r>' % self.title
 
     def get_archives():
-        query = 'SELECT COUNT(*) as nb, DATE_FORMAT(created_at, "%%M %%Y") as date, DATE_FORMAT(created_at, "%%Y-%%m") as date_format FROM blog.article group by DATE_FORMAT(created_at, "%%M %%Y")'
+        query = 'SELECT COUNT(*) as nb, DATE_FORMAT(created_at, "%%M %%Y") as date, DATE_FORMAT(created_at, "%%Y-%%m") as date_format FROM blog_db.article group by DATE_FORMAT(created_at, "%%M %%Y")'
         return db.engine.execute(query)
 
     @classmethod

@@ -6,8 +6,8 @@ from flask import current_app
 
 
 @click.command()
-def init_db():
-    """ Initialize db """
+def load_fixtures():
+    """ Create the database and load the fixtures """
     db_uri = current_app.config['SQLALCHEMY_DATABASE_URI']
     if not database_exists(db_uri):
         create_database(db_uri)

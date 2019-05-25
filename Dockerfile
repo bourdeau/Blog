@@ -18,8 +18,11 @@ RUN pip install --upgrade pip
 RUN pip install pipenv
 RUN pipenv install --system --deploy --ignore-pipfile
 
-#RUN pipenv run flask init_db
-#RUN pipenv run flask db upgrade
-#RUN pipenv run flask db migrate
+# https://github.com/docker/compose/issues/1837
+# @todo doesn't work :(
+# RUN export FLASK_APP=wsgi.py
+# RUN pipenv run flask load_fixtures
 
 EXPOSE 5000
+
+CMD [ "gunicorn", "--bind", "0.0.0.0:5000", "--reload", "wsgi:app" ]
